@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    example:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/example?zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8&serverTimezone=UTC
+      username: root
+      password:
+      connection-test-query: "SELECT 1"
