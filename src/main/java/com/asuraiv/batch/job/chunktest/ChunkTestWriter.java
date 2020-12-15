@@ -7,7 +7,6 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,11 +23,11 @@ public class ChunkTestWriter implements ItemWriter<Person> {
 	}
 
 	@Override
-	@Transactional // chunk-size는 DB 트랜잭션과 관련없다. 명시적으로 트랜잭션 관리를 해줘야함.
 	public void write(List<? extends Person> items) {
 		log.info("# chunk start");
 		for (Person person : items) {
 			if(saveCnt == 7) {
+				// Transaction 테스트
 				throw new RuntimeException("Error occur!");
 			}
 			personMapper.create(person);
